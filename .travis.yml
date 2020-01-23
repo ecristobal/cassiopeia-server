@@ -13,4 +13,4 @@ jobs:
     - stage: Test
       script: ./mvnw clean install -B -V
     - stage: Quality Checks
-      script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH -B -V
+      script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=$TRAVIS_BRANCH -B -V
