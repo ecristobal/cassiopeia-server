@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - openjdk8
+
+cache:
+    directories:
+     - $HOME/.sonar
+     - $HOME/.m2
+  
+jobs:
+  include:
+    - stage: Test
+      script: ./mvnw clean install -B -V
+    - stage: Quality Checks
+      script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH -B -V
