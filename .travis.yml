@@ -19,8 +19,5 @@ jobs:
       script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=$TRAVIS_BRANCH -B -V
       if: branch != master
     - stage: Build Docker image
-      script: ./mvnw dockerfile:build -B -V
-      if: branch = master
-    - stage: Deploy Docker image to DockerHub
-      script: ./mvnw dockerfile:push -Ddockerfile.username=$DOCKERHUB_USER -Ddockerfile.password=$DOCKERHUB_PASSWORD -B -V
+      script: ./mvnw dockerfile:build -Ddockerfile.username=$DOCKERHUB_USER -Ddockerfile.password=$DOCKERHUB_PASSWORD -B -V
       if: branch = master
