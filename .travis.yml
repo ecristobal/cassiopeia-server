@@ -22,5 +22,5 @@ jobs:
       script: ./mvnw dockerfile:build -B -V
       if: branch = master
     - stage: Deploy Docker image to DockerHub
-      script: ./mvnw dockerfile:build -Ddockerfile.username=$DOCKERHUB_USER -Ddockerfile.password=$DOCKERHUB_PASSWORD -B -V
+      script: ./mvnw dockerfile:push -Ddockerfile.username=$DOCKERHUB_USER -Ddockerfile.password=$DOCKERHUB_PASSWORD -B -V
       if: branch = master
