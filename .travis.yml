@@ -11,13 +11,13 @@ cache:
 jobs:
   include:
     - stage: Test
-      script: ./mvnw clean install -B -V
+      script: mvn clean install -B -V
     - stage: Quality Checks
-      script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -B -V
+      script: mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -B -V
       if: branch = master
     - stage: Quality Checks
-      script: ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=$TRAVIS_BRANCH -B -V
+      script: mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=$TRAVIS_BRANCH -B -V
       if: branch != master
     - stage: Build Docker image
-      script: ./mvnw jib:build -Djib.to.auth.username=$DOCKERHUB_USER -Djib.to.auth.password=$DOCKERHUB_PASSWORD -B -V
+      script: mvn jib:build -Djib.to.auth.username=$DOCKERHUB_USER -Djib.to.auth.password=$DOCKERHUB_PASSWORD -B -V
       if: branch = master
